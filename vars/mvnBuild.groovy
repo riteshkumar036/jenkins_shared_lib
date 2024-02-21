@@ -19,9 +19,11 @@ def call(Map config) {
 }
 */
 
-def call(String directory, String mavenGoal) {
-sh """
-     cd ${directory}
-     mvn ${mavenGoal}
-    """
+def call(Map config) {
+    def directory = config.directory ?: error('Directory is required')
+    def mavenGoal = config.mavenGoal ?: 'clean install'
+    sh """
+         cd ${directory}
+         mvn ${mavenGoal}
+        """
 }
