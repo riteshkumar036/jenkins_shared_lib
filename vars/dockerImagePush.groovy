@@ -20,9 +20,9 @@ def call(String aws_account_id, String region, String ecr_repoName){
 }
 
 def call(Map config){
-    
+    def imageName = config.imageName ?: error('imageName is required')
     sh """
-     docker push riteshdockerhub036/k8s-fleetman-api-gateway
-     docker rmi riteshdockerhub036/k8s-fleetman-api-gateway
+     docker push ${imageName}
+     docker rmi ${imageName}
     """
 }
