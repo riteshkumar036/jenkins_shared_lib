@@ -7,10 +7,18 @@
 //     """
 // }
 
-def call(String aws_account_id, String region, String ecr_repoName){
+/*def call(String aws_account_id, String region, String ecr_repoName){
     
     sh """
      docker build -t ${ecr_repoName} .
      docker tag ${ecr_repoName}:latest ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${ecr_repoName}:latest
     """
+} */
+
+def call(Map config) {
+    def imageName = config.imageName ?: error('imageName is required')
+    def tag = config.tag ?: 'tag'
+    sh """
+         docker build -t ${imageName}:${tag} .
+        """
 }
