@@ -1,5 +1,5 @@
 // vars/customMap.groovy
-
+/*
 def call(Map config) {
     // Extract parameters
     def directory = config.directory ?: error('Directory is required')
@@ -16,4 +16,12 @@ def call(Map config) {
 
     // Execute the closure within the pipeline
     steps(stepsClosure)
+}
+*/
+
+def call(String directory, String mavenGoal) {
+sh """
+     cd ${directory}
+     "mvn ${mavenGoal}"
+    """
 }
