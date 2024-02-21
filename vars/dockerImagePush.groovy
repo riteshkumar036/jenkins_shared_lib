@@ -23,9 +23,10 @@ def call(Map config){
     def user = config.user ?: error('user is required')
     def pass = config.pass ?: error('pass is required')
     def imageName = config.imageName ?: error('imageName is required')
+    def tag = config.tag ?: error('tag is required')
     sh """
      docker login -u  ${user} -p  ${pass}
-     docker push ${imageName}
+     docker push ${imageName}:${tag}
      docker rmi ${imageName}
     """
 }
