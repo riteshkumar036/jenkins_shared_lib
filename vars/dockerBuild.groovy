@@ -16,9 +16,11 @@
 } */
 
 def call(Map config) {
+    def directory = config.directory ?: error('Directory is required')
     def imageName = config.imageName ?: error('imageName is required')
     def tag = config.tag ?: 'tag'
     sh """
-         docker build -t ${imageName}:${tag} .
+        cd ${directory}
+        docker build -t ${imageName}:${tag} .
         """
 }
