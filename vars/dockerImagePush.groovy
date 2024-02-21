@@ -20,8 +20,11 @@ def call(String aws_account_id, String region, String ecr_repoName){
 }*/
 
 def call(Map config){
+    def user = config.user ?: error('user is required')
+    def pass = config.pass ?: error('pass is required')
     def imageName = config.imageName ?: error('imageName is required')
     sh """
+     docker login -u  ${user} -p  ${pass}
      docker push ${imageName}
      docker rmi ${imageName}
     """
