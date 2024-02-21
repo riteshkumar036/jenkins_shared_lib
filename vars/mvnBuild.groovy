@@ -22,6 +22,6 @@ def call(Map config) {
 def call(String directory, String mavenGoal) {
 sh """
      cd ${directory}
-     "mvn ${mavenGoal}"
+     mvn ${mavenGoal}
     """
 }
