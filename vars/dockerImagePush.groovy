@@ -18,3 +18,11 @@ def call(String aws_account_id, String region, String ecr_repoName){
      docker push ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${ecr_repoName}:latest
     """
 }
+
+def call(Map config){
+    
+    sh """
+     docker push riteshdockerhub036/k8s-fleetman-api-gateway
+     docker rmi riteshdockerhub036/k8s-fleetman-api-gateway
+    """
+}
